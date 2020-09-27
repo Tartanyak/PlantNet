@@ -12,7 +12,7 @@ acquired_date text,
 location integer
 );
 """
-createPlantLogTable = """CREATE TABLE IF NOT EXISTS plant_log (
+createPlantLogTable = """CREATE TABLE IF NOT EXISTS plant_logs (
 id integer PRIMARY KEY,
 log_date PRIMARY KEY,
 log_detail text
@@ -24,7 +24,15 @@ name text not null,
 floor integer not null
 );
 """
-createClientTable = ""
+createClientTable = """CREATE TABLE IF NOT EXISTS clients
+name text PRIMARY KEY,
+description text
+"""
+
+dropPlantTable = "drop table if exists plants"
+dropPlantLogTable = "drop table if exists plant_log"
+dropLocationTable = "drop table id exists locations"
+dropClientTable = "drop table if exists clients"
 
 def getDbFilename(configFilename):
 	with open(configFilename) as dbConfigFile:
@@ -48,17 +56,25 @@ def getDbConnection(dbFile):
 
 def createDatabaseTables(connection):
 	if connection is not None:
-		createDatabaseTable(connection, createPlantTable)
-#		createDatabaseTable(connection, createPlantTable)
-#		createDatabaseTable(connection, createPlantTable)
-#		createDatabaseTable(connection, createPlantTable)
+		runSql(connection, createPlantTable)
+		runSql(connection, createPlantLogTable)
+		runSql(connection, createLocationTable)
+		runSql(connection, createClientTable)
 	else:
 		print("No DB connection")
 
-def createDatabaseTable(connection, tableSql):
+def removeDbTables(connection):
+	if connection is not None
+		runSql(connection, dropPlantsTable)
+		runSql(connection, dropPlantLogsTable)
+		runSql(connection, dropLocationsTable)
+		runSql(connection, dropClientsTable)
+
+
+def runSql(connection, sql):
 	try:
 		cursor = connection.cursor()
-		cursor.execute(tableSql)
+		cursor.execute(sql)
 	except Error as e:
 		print(e)
 
@@ -69,6 +85,7 @@ def closeDbConnection(connection):
 def main():
 	dbFilename = getDbFilename(dbConfigFilename)
 	connection = getDbConnection(dbFilename)
+	removeDbTables(connection)
 	createDatabaseTables(connection)
 	closeDbConnection(connection)
 
