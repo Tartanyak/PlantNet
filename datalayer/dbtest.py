@@ -13,9 +13,10 @@ location integer
 );
 """
 createPlantLogTable = """CREATE TABLE IF NOT EXISTS plant_logs (
-id integer PRIMARY KEY,
-log_date PRIMARY KEY,
-log_detail text
+id integer not null,
+log_date not null,
+log_detail text,
+PRIMARY KEY(id, log_date)
 );
 """
 createLocationTable = """CREATE TABLE IF NOT EXISTS locations (
@@ -24,15 +25,16 @@ name text not null,
 floor integer not null
 );
 """
-createClientTable = """CREATE TABLE IF NOT EXISTS clients
+createClientTable = """CREATE TABLE IF NOT EXISTS clients (
 name text PRIMARY KEY,
 description text
+);
 """
 
-dropPlantTable = "drop table if exists plants"
-dropPlantLogTable = "drop table if exists plant_log"
-dropLocationTable = "drop table id exists locations"
-dropClientTable = "drop table if exists clients"
+dropPlantsTable = "drop table plants"
+dropPlantLogsTable = "drop table plant_logs"
+dropLocationsTable = "drop table locations"
+dropClientsTable = "drop table clients"
 
 def getDbFilename(configFilename):
 	with open(configFilename) as dbConfigFile:
@@ -64,7 +66,7 @@ def createDatabaseTables(connection):
 		print("No DB connection")
 
 def removeDbTables(connection):
-	if connection is not None
+	if connection is not None:
 		runSql(connection, dropPlantsTable)
 		runSql(connection, dropPlantLogsTable)
 		runSql(connection, dropLocationsTable)
