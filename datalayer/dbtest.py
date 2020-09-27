@@ -36,6 +36,8 @@ dropPlantLogsTable = "drop table plant_logs"
 dropLocationsTable = "drop table locations"
 dropClientsTable = "drop table clients"
 
+
+
 def getDbFilename(configFilename):
 	with open(configFilename) as dbConfigFile:
 		dbConfig = json.load(dbConfigFile)
