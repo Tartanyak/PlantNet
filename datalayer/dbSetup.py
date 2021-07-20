@@ -1,9 +1,10 @@
 import json
 import sqlite3
+import os
 from sqlite3 import Error
 
 dbFilenameConfigParameter = "dbfilename"
-dbConfigFilename = "dbconfig.json"
+dbConfigFilename = "D:\\Dev\\Projects\\PlantNet\\datalayer\\dbconfig.json"
 
 createPlantTable = """CREATE TABLE IF NOT EXISTS plants (
 id integer PRIMARY KEY,
