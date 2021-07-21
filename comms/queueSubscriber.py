@@ -4,7 +4,7 @@ import time
 def on_message(client, userdata, message):
     print("received message: " ,str(message.payload.decode("utf-8")))
 
-brokerAddress = "mqtt.eclipseprojects.io"
+brokerAddress = "llb-server"
 clientSubscribeName = "MoistureReader"
 topic = "TIMESTAMP"
 

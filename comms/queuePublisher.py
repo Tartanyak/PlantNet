@@ -2,7 +2,7 @@ import paho.mqtt.client as mqtt
 from datetime import datetime
 import time
 
-brokerAddress = "mqtt.eclipseprojects.io"
+brokerAddress = "llb-server"
 clientPublishName = "MoistureTimestamp"
 topic = "TIMESTAMP"
 
