@@ -1,9 +1,16 @@
 import paho.mqtt.client as mqtt
+from datetime import datetime
 import time
 
 brokerAddress = "mqtt.eclipseprojects.io"
-clientName = "Moisture"
+clientPublishName = "MoistureTimestamp"
+topic = "TIMESTAMP"
 
-client = mqtt.Client(clientName)
-client.connect(brokerAddress)
+clientPublish = mqtt.Client(clientPublishName)
+clientPublish.connect(brokerAddress)
 
+while True:
+    now = datetime.now().strftime("%H:%M:%S")
+    print("Just published " + now + " to topic " + topic + " timestamp")
+    clientPublish.publish(topic, now)
+    time.sleep(2)
