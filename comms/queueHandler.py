@@ -16,3 +16,20 @@ def publish_message(client, message, topic):
         print("Published to topic " + topic + " at " + now)
 
 
+
+
+brokerAddress = "mqtt.eclipseprojects.io"
+clientName = "Moisture"
+clientPublishName = "MoistureTimestamp"
+topic = "TIMESTAMP"
+
+client = mqtt.Client(clientName)
+client.connect(brokerAddress)
+clientPublish = mqtt.Client(clientPublishName)
+clientPublish.connect(brokerAddress)
+
+while True:
+    now = datetime.now().strftime("%H:%M:%S")
+    print("Just published " + now + " to topic " + topic + " timestamp")
+    clientPublish.publish(topic, now)
+    time.sleep(2)
