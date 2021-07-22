@@ -1,6 +1,4 @@
 from grove import temperature
-from readTemperature import read_temperature
-
 
 brokerAddress = "192.168.178.44"
 clientPublishName = "PlantData"
