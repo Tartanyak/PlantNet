@@ -29,7 +29,6 @@ def get_sensor(pin, dry_voltage, wet_voltage):
     return sensor
 
 def read_moisture(sensor):
-    print('{}'.format(sensor.moisture_percent))
     return '{}'.format(sensor.moisture_percent)
 
     

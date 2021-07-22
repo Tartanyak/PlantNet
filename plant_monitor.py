@@ -24,16 +24,16 @@ def main():
     while True:
         if(constants.read_temperature):
             current_temperature = sensors.readTemperature.read_temperature(temperature_sensor)
-            message_json = lib.packageJSONpackage_value(constants.temperature_label,
+            message_json = lib.packageJSON.package_value(constants.temperature_label,
                 current_temperature, 
-                lib.packageJSONget_now_string(constants.now_string_format),
+                lib.packageJSON.get_now_string(constants.now_string_format),
                 host_name)
             comms.queueHandler.publish_message(client, message_json, constants.topic_air_temperature)
         if(constants.read_moisture):
             current_moisture = sensors.readMoisture.read_moisture(moisture_sensor)
-            message_json = lib.packageJSONpackage_value(constants.moisture_label,
+            message_json = lib.packageJSON.package_value(constants.moisture_label,
                 current_moisture, 
-                lib.packageJSONget_now_string(constants.now_string_format),
+                lib.packageJSON.get_now_string(constants.now_string_format),
                 host_name)
             comms.queueHandler.publish_message(client, message_json, constants.topic_moisture)
 
