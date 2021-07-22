@@ -6,7 +6,7 @@ def get_client(clientName, brokerAddress):
     print("Getting client")
     client = mqtt.Client(clientName)
     print("Connecting client")
-    client.connect(brokerAddress, port=1883)
+    client.connect(brokerAddress)
     print("Got and connected client")
     return client
 
