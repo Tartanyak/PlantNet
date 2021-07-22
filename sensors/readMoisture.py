@@ -24,9 +24,10 @@ def get_sensor(pin, dry_voltage, wet_voltage):
     return sensor
 
 PIN = 0
-sensor = get_sensor(PIN, 2048, 1298)
+sensor = get_sensor(PIN, 2048, 1266)
 print('Detecting temperature...')
 while True:
     print('{} mV'.format(sensor.voltage))
+    print('{} %'.format(sensor.moisture_percent))
     time.sleep(2)
     
