@@ -27,7 +27,7 @@ def main():
 
         if(constants.read_moisture):
             current_moisture = sensors.readMoisture.read_moisture(moisture_sensor)
-            current_moisture_voltage = sensors.readMoisture.read_voltage
+            current_moisture_voltage = sensors.readMoisture.read_voltage(moisture_sensor)
             print(current_moisture)
             print(current_moisture_voltage)
 
