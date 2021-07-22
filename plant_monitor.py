@@ -10,10 +10,10 @@ def main():
     print("Hostname:" + host_name)
     print("getting sensor from pin " + constants.air_temp_pin)
     temperature_sensor = get_sensor(constants.air_temp_pin)
-    print("Got sensor: " + temperature_sensor)
+    print("Got sensor")
     print("Getting MQTT client with " + constants.clientPublishName + " and brokerAddress " + constants.brokerAddress) 
     client = get_client(constants.clientPublishName, constants.brokerAddress)
-    print("Got client: " + client)
+    print("Got client")
 
     while True:
         try:
