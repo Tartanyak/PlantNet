@@ -5,9 +5,15 @@ from sensors.readTemperature import get_sensor, read_temperature
 import time
 
 def main():
+    print("Getting hostname")
     host_name = get_hostname()
+    print("Hostname:" + host_name)
+    print("getting sensor from pin " + constants.air_temp_pin)
     temperature_sensor = get_sensor(constants.air_temp_pin)
-    client = get_client(constants.clientPublishName, constants.topic_air_temperature)
+    print("Got sensor: " + temperature_sensor)
+    print("Getting MQTT client with " + constants.clientPublishName + " and brokerAddress " + constants.brokerAddress) 
+    client = get_client(constants.clientPublishName, constants.brokerAddress)
+    print("Got client: " + client)
 
     while True:
         try:
