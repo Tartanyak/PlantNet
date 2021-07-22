@@ -3,6 +3,7 @@ clientPublishName = "PlantData"
 clientSubscribeName = "PlantReader"
 topic_air_temperature = "AIR_TEMP"
 topic_moisture = "MOISTURE"
+read_sensor_interval =2
 air_temp_pin = 0 #int
 moisture_pin = 2 #int
 now_string_format = "%H:%M:%S:%f"
