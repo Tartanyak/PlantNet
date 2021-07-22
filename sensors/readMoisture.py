@@ -13,7 +13,7 @@ class GroveCapMoistureSensor:
         v = self.voltage
         normalised_value = abs(self.dry_voltage-v)
         print("dry-v = {}".format(normalised_value))
-        dif = abs(self.dry_voltage - self.wet_voltage)
+        dif = float(abs(self.dry_voltage - self.wet_voltage))
         print("diff = {}".format(dif))
         print(normalised_value/dif)
         percent = normalised_value/dif
