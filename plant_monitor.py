@@ -18,7 +18,7 @@ def main():
     print("Got client")
 
     while True:
-        current_temperature = read_temperature(temperature_sensor, constants.air_temp_pin)
+        current_temperature = read_temperature(temperature_sensor)
         message_json = package_temperature(current_temperature, 
             get_now_string(constants.now_string_format),
             host_name)
