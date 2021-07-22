@@ -16,8 +16,7 @@ class GroveCapMoistureSensor:
         dif = float(abs(self.dry_voltage - self.wet_voltage))
         print("diff = {}".format(dif))
         print(normalised_value/dif)
-        percent = normalised_value/dif
-        print(percent)
+        percent = (normalised_value/dif)*100
         return percent
     
     @property
@@ -34,6 +33,6 @@ sensor = get_sensor(PIN, 2048, 1250)
 print('Detecting temperature...')
 while True:
     print('{} mV'.format(sensor.voltage))
-    print('{} %'.format(sensor.moisture_percent))
+    print('{:.2f} %'.format(sensor.moisture_percent))
     time.sleep(2)
     
