@@ -10,8 +10,12 @@ class GroveCapMoistureSensor:
 
     @property
     def moisture_percent(self):
-        adjusted_voltage = abs(self.voltage - self.dry_voltage)
-        percent = (self.wet_voltage/100)*adjusted_voltage
+        v = self.voltage
+        print("wet-v = {}".format(abs(self.wet_voltage-v)))
+        print("dry-v = {}".format(abs(self.dry_voltage-v)))
+        dif = abs(self.dry_voltage - self.wet_voltage)
+        print("diff = {}".format(dif))
+        percent = (dif/100)*abs(self.wet_voltage-v)
         return percent
     
     @property
@@ -24,7 +28,7 @@ def get_sensor(pin, dry_voltage, wet_voltage):
     return sensor
 
 PIN = 0
-sensor = get_sensor(PIN, 2048, 1266)
+sensor = get_sensor(PIN, 2048, 1250)
 print('Detecting temperature...')
 while True:
     print('{} mV'.format(sensor.voltage))
