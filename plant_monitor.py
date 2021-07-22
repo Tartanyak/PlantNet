@@ -6,7 +6,7 @@ import time
 
 def main():
     host_name = get_hostname()
-    temperature_sensor = get_sensor()
+    temperature_sensor = get_sensor(constants.air_temp_pin)
     client = get_client(constants.clientPublishName, constants.topic_air_temperature)
 
     while True:
