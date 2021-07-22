@@ -13,6 +13,6 @@ clientSubscribe.loop_start()
 clientSubscribe.subscribe("MOISTURE")
 
 clientSubscribe.on_message = on_message 
-
-time.sleep(30)
+ 
+time.sleep(60)
 clientSubscribe.loop_stop()
