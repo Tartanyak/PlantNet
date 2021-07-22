@@ -2,6 +2,7 @@ import constants
 from comms.queueHandler import get_client, publish_message
 from lib.packageJSON import package_temperature, get_now_string, get_hostname
 from sensors.readTemperature import get_sensor, read_temperature
+import paho.mqtt.client as mqtt
 import time
 
 def main():
