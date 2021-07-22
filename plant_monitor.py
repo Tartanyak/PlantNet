@@ -18,19 +18,14 @@ def main():
     print("Got client")
 
     while True:
-        try:
-
-            current_temperature = read_temperature(temperature_sensor, constants.air_temp_pin)
-            message_json = package_temperature(current_temperature, 
-                get_now_string(constants.now_string_format),
-                host_name)
-            publish_message(client, message_json, constants.topic_air_temperature)
-            time.sleep(10)
-            break
-        except KeyboardInterrupt:
-            print("Exiting...")
-        except:
-            print("not connected yet, trying again....")
+        current_temperature = read_temperature(temperature_sensor, constants.air_temp_pin)
+        message_json = package_temperature(current_temperature, 
+            get_now_string(constants.now_string_format),
+            host_name)
+        publish_message(client, message_json, constants.topic_air_temperature)
+        time.sleep(10)
+        
+        
 
 
 if __name__ == "__main__":
