@@ -28,11 +28,8 @@ def get_sensor(pin, dry_voltage, wet_voltage):
     sensor = GroveCapMoistureSensor(pin, dry_voltage, wet_voltage)
     return sensor
 
-PIN = 0
-sensor = get_sensor(PIN, 2048, 1250)
-print('Detecting temperature...')
-while True:
-    print('{} mV'.format(sensor.voltage))
-    print('{:.2f} %'.format(sensor.moisture_percent))
-    time.sleep(2)
+def read_moisture(sensor):
+    print('{}'.format(sensor.moisture_percent))
+    return '{}'.format(sensor.moisture_percent)
+
     
