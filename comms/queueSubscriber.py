@@ -1,19 +1,17 @@
 import paho.mqtt.client as mqtt
 import time
+import constants
 
 def on_message(client, userdata, message):
     print("received message: " ,str(message.payload.decode("utf-8")))
 
-brokerAddress = "llb-server"
-clientSubscribeName = "MoistureReader"
-topic = "TIMESTAMP"
 
 
-clientSubscribe = mqtt.Client(clientSubscribeName)
-clientSubscribe.connect(brokerAddress) 
+clientSubscribe = mqtt.Client(constants.clientSubscribeName)
+clientSubscribe.connect(constants.brokerAddress) 
 
 clientSubscribe.loop_start()
-clientSubscribe.subscribe(topic)
+clientSubscribe.subscribe(constants.topic_air_temperature)
 
 clientSubscribe.on_message = on_message 
 
