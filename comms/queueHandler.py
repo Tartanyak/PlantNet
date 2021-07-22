@@ -3,8 +3,11 @@ from datetime import datetime
 import time
 
 def get_client(clientName, brokerAddress):
+    print("Getting client")
     client = mqtt.Client(clientName)
-    client.connect(brokerAddress)
+    print("Connecting client")
+    client.connect(brokerAddress, port=1883)
+    print("Got and connected client")
     return client
 
 def publish_message(client, message, topic):
