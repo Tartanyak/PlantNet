@@ -8,13 +8,13 @@ class dbConnection:
 
 	connection = None
 
-	def getConnection(self):
-		if connection is None:
+	def getConnection(self, dbFile):
+		if self.connection is None:
 			try:
-	                	connection = sqlite3.connect(dbFile)
-        	        	print(sqlite3.version)
-                		return connection
-	        	except Error as e:
-        	        	print(e)
+				connection = sqlite3.connect(dbFile)
+				print(sqlite3.version)
+				return self.connection
+			except Error as e:
+				print(e)
 		else:
-			return connection
+			return self.connection
