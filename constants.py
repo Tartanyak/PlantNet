@@ -1,4 +1,4 @@
-brokerAddress = "LLB-Server"
+brokerAddress = "192.168.178.44"
 clientPublishName = "PlantData"
 clientSubscribeName = "PlantReader"
 topic_air_temperature = "AIR_TEMP"

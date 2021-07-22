@@ -18,7 +18,7 @@ def publish_message(client, message, topic):
 
 
 
-brokerAddress = "LLB-Server"
+brokerAddress = "192.168.178.44"
 clientName = "Moisture"
 clientPublishName = "MoistureTimestamp"
 topic = "AIR_TEMP"
