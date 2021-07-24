@@ -82,6 +82,7 @@ def insertDemoData(connection):
 		runSql(connection, insertDemoLocation)
 		runSql(connection, insertDemoPlant)
 		runSql(connection, insertDemoLog)
+		connection.commit()
 
 def runSql(connection, sql):
 	try:
