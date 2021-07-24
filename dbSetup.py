@@ -4,7 +4,7 @@ import os
 from sqlite3 import Error
 
 dbFilenameConfigParameter = "dbfilename"
-dbConfigFilename = "D:\\Dev\\Projects\\PlantNet\\datalayer\\dbconfig.json"
+dbConfigFilename = "dbconfig.json"
 
 createPlantTable = """CREATE TABLE IF NOT EXISTS plants (
 id integer PRIMARY KEY,

@@ -1,6 +1,6 @@
 
 dbFilenameConfigParameter = "dbfilename"
-dbConfigFilename = "D:\\Dev\\Projects\\PlantNet\\datalayer\\dbconfig.json"
+dbConfigFilename = "dbconfig.json"
 
 brokerAddress = "192.168.178.44"
 clientPublishName = "PlantData"
