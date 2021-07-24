@@ -43,7 +43,6 @@ def main():
 
         time.sleep(constants.read_sensor_interval)
         
-        
 
 
 if __name__ == "__main__":

@@ -1,4 +1,6 @@
-from grove import temperature
+
+dbFilenameConfigParameter = "dbfilename"
+dbConfigFilename = "D:\\Dev\\Projects\\PlantNet\\datalayer\\dbconfig.json"
 
 brokerAddress = "192.168.178.44"
 clientPublishName = "PlantData"
