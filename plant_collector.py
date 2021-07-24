@@ -1,5 +1,5 @@
 import constants
-import comms.queueHandler 
+import comms.queueSubscriber 
 import lib.packageJSON 
 #import paho.mqtt.client as mqtt
 import time
