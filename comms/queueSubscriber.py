@@ -9,7 +9,8 @@ def on_connect(client, userdata, flags, rc):
 
 def get_client(clientName, brokerAddress):
     client = mqtt.Client(clientName)
-    client.connect(brokerAddress) 
+    client.connect(brokerAddress)
+    return client
 
 def start_loop(client, subscription_name, on_message_function=on_message, on_connect_function=on_connect):
     client.loop_start()
