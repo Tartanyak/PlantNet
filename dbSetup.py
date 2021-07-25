@@ -16,9 +16,12 @@ location text
 createPlantLogTable = """CREATE TABLE IF NOT EXISTS plant_logs (
 id integer PRIMARY KEY,
 log_date text not null,
-log_detail text
+log_json text,
+log_variable text,
+log_value text
 );
 """
+
 createLocationTable = """CREATE TABLE IF NOT EXISTS locations (
 name text PRIMARY KEY,
 floor integer not null
@@ -37,7 +40,7 @@ dropClientsTable = "drop table clients"
 
 insertDemoLocation = """insert into locations (name, floor) values ('Living room', 0)"""
 insertDemoPlant = """insert into plants (name, acquired_date, location) values ('Big plant', '2016-05-05', 'Living room')"""
-insertDemoLog = """insert into plant_logs (log_date, log_detail) values (strftime('%Y-%m-%d %H:%M:%S:%f'), 'testData')"""
+insertDemoLog = """insert into plant_logs (log_date, log_json, log_variable, log_value) values (strftime('%Y-%m-%d %H:%M:%S:%f'), 'testData', 'AIR_TEMP', '22')"""
 
 
 
