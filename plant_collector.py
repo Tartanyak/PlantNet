@@ -14,10 +14,9 @@ def main():
         datalayer.dbConnection.get_config_json(constants.dbConfigFilename),
         constants.dbFilenameConfigParameter
     )
-    print(db_file)
     db_connection = None
     db_connection = datalayer.dbConnection.get_db_connection(db_connection, db_file)
-    datalayer.dbConnection.testPrintSql(db_connection, "SELECT * from locations")
+    
 
 def on_message(client, userdata, message):
     print("Collector received message: " ,str(message.payload.decode("utf-8")))
