@@ -32,7 +32,7 @@ def record_moisture(client, moisture_sensor, host_name):
     comms.queueHandler.publish_message(client, message_json, constants.topic_moisture)
 
 def record_light(client, light_sensor, host_name):
-    current_light = sensors.readLight(light_sensor)
+    current_light = sensors.readLight.read_light(light_sensor)
     message_json = lib.packageJSON.package_value(constants.light_label,
         current_light, 
         lib.packageJSON.get_now_string(constants.now_string_format),
