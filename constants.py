@@ -16,5 +16,5 @@ moisture_wet_voltage = 1250
 temperature_label = "temperature"
 moisture_label = "moisture"
 moisture_voltage_label = "moisturevoltage"
-read_temperature = False
+read_temperature = True
 read_moisture = True
