@@ -4,16 +4,15 @@ import lib.packageJSON
 import paho.mqtt.client as mqtt
 import time
 import datalayer.dbConnection
+import signal
+import sys
 
-
-
-class PlantCollector:
+class PlantCollector(mqtt.Client):
     db_connection = None
-    client = None
 
-    def __init__(self):
+    def __init__(self, client_id):
+        super(PlantCollector, self).__init__(client_id)
         print("Starting collector")
-        self.client =  comms.queueSubscriber.get_client(constants.clientPublishName, constants.brokerAddress)
         
         print("Opening DB")
 
@@ -24,40 +23,35 @@ class PlantCollector:
 
         self.db_connection = datalayer.dbConnection.get_db_connection(self.db_connection, db_file)
 
-        #comms.queueSubscriber.start_loop(client, constants.topic_subscribe, self.on_message, self.on_connect)
-
-        
-
-    def listen(self):
-        client =  comms.queueSubscriber.get_client(constants.clientPublishName, constants.brokerAddress)
-        client.on_message = self.on_message
-        client.on_connect = self.on_connect
-        client.on_subscribe = self.on_subscribe
-        client.on_log = self.on_log
-        print(self.client.subscribe("PLANTNET/+"))
-        client.loop_start()
-        print("starting loop")
-        
-        
-        time.sleep(20)
-        comms.queueSubscriber.stop_loop(client)
-        client.loop_stop()
-
     def on_message(self, client, userdata, message):
         print("Here")
         print("Collector received message: " ,str(message.payload.decode("utf-8")))
 
     def on_connect(self, client, userdata, flags, rc):
-        print("Collector connection returned result: " + mqtt.connack_string(rc))
+        print("Collector connection returned result: ", mqtt.connack_string(rc))
 
-    def on_subscribe(self, client, userdata, mid, qos):
+    def on_subscribe(self, mqttc, obj, mid, granted_qos):
         print("Collector subscribed with id "+ str(mid))
 
-    def on_log(client, userdata, level, buf):
-        print("log: ",buf)
-def main():
-    pc = PlantCollector()
-    pc.listen()
+    #def on_log(self, mqttc, obj, level, buf):
+    #    print("log: ", buf)
 
-if __name__ == "__main__":
-    main()
+    def run(self):
+
+        self.connect(constants.brokerAddress)
+        self.subscribe(constants.topic_subscribe)
+
+        self.loop_start()
+
+    def stop(self):
+        self.loop_stop()
+
+
+def signal_handler(sig, frame):
+    pc.stop()
+    print("Exiting")
+    sys.exit(0)
+
+signal.signal(signal.SIGINT, signal_handler)
+pc = PlantCollector(constants.clientSubscribeName)
+pc.run()
