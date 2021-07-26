@@ -10,7 +10,8 @@ createPlantTable = """CREATE TABLE IF NOT EXISTS plants (
 id integer PRIMARY KEY,
 name text NOT NULL,
 acquired_date text,
-location text
+location text,
+FOREIGN KEY(location) REFERENCES locations(name)
 );
 """
 createPlantLogTable = """CREATE TABLE IF NOT EXISTS plant_logs (
@@ -19,7 +20,8 @@ plant_id integer not null,
 log_date text not null,
 log_json text,
 log_variable text,
-log_value text
+log_value text,
+FOREIGN KEY(plant_id) REFERENCES plants(id)
 );
 """
 
