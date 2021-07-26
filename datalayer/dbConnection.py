@@ -4,8 +4,8 @@ from sqlite3 import Error
 import os
 
 
-dbFilenameConfigParameter = "dbfilename"
-dbConfigFilename = "dbconfig.json"
+#dbFilenameConfigParameter = "dbfilename"
+#dbConfigFilename = "dbconfig.json"
 
 connection = None
 

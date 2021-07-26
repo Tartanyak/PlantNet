@@ -1,19 +1,25 @@
 import constants
 import comms.queueSubscriber 
 import lib.helpers
-import paho.mqtt.client as mqtt
-import time
 import datalayer.dbConnection
+import datalayer.plantLogRecorder
 import signal
 import sys
 
 def signal_handler(sig, frame):
+    
+    print("Stopping MQTT client")
     pc.stop()
-    print("Exiting")
+    print("Test details")
+    datalayer.dbConnection.testPrintSql(db_connection, "select * from plant_logs")
+    print("Closing DB connection")
+    db_connection.close()
     sys.exit(0)
 
 def test_theory(client, userdata, message):
-    print(lib.helpers.message_to_string(message))
+    message_json = lib.helpers.message_to_string(message) 
+    
+    print(datalayer.plantLogRecorder.create_log_sql(db_connection, message_json))
 
 signal.signal(signal.SIGINT, signal_handler)
 
