@@ -44,7 +44,6 @@ def testPrintSql(connection, sql):
 		rows = cursor.fetchall()
 		for row in rows:
 			print(row)
-
 	except Error as e:
 		print(e)
 

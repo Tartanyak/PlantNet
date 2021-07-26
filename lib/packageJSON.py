@@ -1,9 +1,9 @@
 import json
 
-def package_value(label, value, time, host_id):
+def package_value(source_plant, label, value, time, host_id):
     message = {
         "timestamp": time,
-        "source":"testPi1",
+        "source":source_plant,
         "variable":label,
         "value":value,
         "host_id":host_id
