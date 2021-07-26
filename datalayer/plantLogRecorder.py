@@ -12,5 +12,5 @@ def create_log_sql(connection, log_details):
     json_source_plant = log_json["source"]
     log_table = """plant_logs"""
     log_columns = """plant_id, log_date, log_json, log_variable, log_value"""
-    log_values = "{0}, '{1}', '{2}', '{3}', '{4}'".format(json_timestamp, log_details, json_variable, json_value)
+    log_values = "{0}, '{1}', '{2}', '{3}', '{4}'".format(json_source_plant, json_timestamp, log_details, json_variable, json_value)
     return insert_sql.format(log_table, log_columns, log_values)
