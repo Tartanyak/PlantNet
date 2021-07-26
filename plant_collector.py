@@ -8,7 +8,7 @@ import signal
 import sys
 
 class PlantCollector(mqtt.Client):
-    db_connection = None
+    output_function = None
 
     def __init__(self, client_id):
         super(PlantCollector, self).__init__(client_id)
@@ -16,15 +16,11 @@ class PlantCollector(mqtt.Client):
         
         print("Opening DB")
 
-        db_file = datalayer.dbConnection.get_config_parameter(
-            datalayer.dbConnection.get_config_json(constants.dbConfigFilename),
-            constants.dbFilenameConfigParameter
-        )
-
-        self.db_connection = datalayer.dbConnection.get_db_connection(self.db_connection, db_file)
+        
+        #self.output_function = output_function
 
     def on_message(self, client, userdata, message):
-        print("Here")
+        self.output_function("Funky")
         print("Collector received message: " ,str(message.payload.decode("utf-8")))
 
     def on_connect(self, client, userdata, flags, rc):
@@ -37,14 +33,18 @@ class PlantCollector(mqtt.Client):
     #    print("log: ", buf)
 
     def run(self):
-
         self.connect(constants.brokerAddress)
         self.subscribe(constants.topic_subscribe)
 
-        self.loop_start()
+        self.loop_forever()
+
 
     def stop(self):
         self.loop_stop()
+
+    def message_to_string(message):
+        return str(message.payload.decode("utf-8"))
+
 
 
 def signal_handler(sig, frame):
@@ -52,6 +52,18 @@ def signal_handler(sig, frame):
     print("Exiting")
     sys.exit(0)
 
+def test_theory(client, userdata, message):
+    print(PlantCollector.message_to_string(message))
+
 signal.signal(signal.SIGINT, signal_handler)
-pc = PlantCollector(constants.clientSubscribeName)
-pc.run()
+
+db_file = datalayer.dbConnection.get_config_parameter(
+            datalayer.dbConnection.get_config_json(constants.dbConfigFilename),
+            constants.dbFilenameConfigParameter
+        )
+db_connection = None
+db_connection = datalayer.dbConnection.get_db_connection(db_connection, db_file)
+
+pc = comms.queueSubscriber.QueueSubscriber(constants.clientSubscribeName)
+pc.on_message = test_theory
+pc.run(constants.brokerAddress, constants.topic_subscribe)
