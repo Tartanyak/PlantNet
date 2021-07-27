@@ -17,7 +17,8 @@ def signal_handler(sig, frame):
     sys.exit(0)
 
 def record_log(client, userdata, message):
-    message_json = lib.helpers.message_to_string(message) 
+    message_json = lib.helpers.message_to_string(message)
+    print(message_json)
     insert_sql = datalayer.plantLogRecorder.create_log_sql(db_connection, message_json)
     datalayer.dbConnection.runSql(db_connection, insert_sql)
     db_connection.commit()
@@ -26,6 +27,7 @@ def record_log(client, userdata, message):
 
 signal.signal(signal.SIGINT, signal_handler)
 signal.signal(signal.SIGTERM, signal_handler)
+
 db_file = datalayer.dbConnection.get_config_parameter(
             datalayer.dbConnection.get_config_json(constants.dbConfigFilename),
             constants.dbFilenameConfigParameter
