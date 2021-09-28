@@ -29,3 +29,19 @@ sudo apt install python-pip
 sudo pip install -r requirements.txt
 sudo pip install --upgrade pip
 
+#/var/lib/systemd/system/plantdata.service example
+[Unit]
+Description=plantdata
+After=network.target network-online.target
+
+[Service]
+Type=simple
+User=pi
+Group=pi
+Restart=always
+ExecStartPre=+/bin/mkdir -p /var/run/plantdata
+PIDFile=/var/run/plantdata/service.pid
+ExecStart=python /home/pi/projects/PlantNet/plant_monitor.py
+
+[Install]
+WantedBy=multi-user.target
